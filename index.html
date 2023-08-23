@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com" />
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="styles/spectre/spectre.min.css" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="styles/spectre/spectre-exp.min.css" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="styles/spectre/spectre-icons.min.css" />
+  <link rel="stylesheet"
+        type="text/css"
+        href="styles/styles.css" />
+  <title>Invoice</title>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://npmcdn.com/flatpickr/dist/l10n/es.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+          integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer"></script>
+</head>
+
+<body id="invoice" class="mb-base">
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-body">
+      <div class="container grid-lg">
+        <div class="columns">
+          <div class="column col-7 col-md-12">
+            <img class="logo" src="assets/images/logo.png" alt="Logo CSPOSMAR">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- HERO -->
+
+  <!-- MAIN FORM -->
+  <div class="container grid-lg mt-2 pt-2">
+
+    <div class="columns">
+      <!-- Fecha Proforma -->
+      <div class="column col-4 col-md-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="invoiceDate">Fecha de la proforma</label>
+          <input class="w-100 form-input"
+                 type="text"
+                 id="invoiceDate">
+        </div>
+      </div>
+      <!-- Fecha Proforma -->
+
+      <!-- Dirigido a -->
+      <div class="column col-4 col-md-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="sentTo">Dirigido a</label>
+          <input class="form-input"
+                 type="text"
+                 id="sentTo"
+                 name="sentTo"
+                 value="PROSEGURIDAD S.A."
+                 placeholder="Ingresar a quien esta dirigido" />
+          <p id="sentTo-error-hint"
+             class="form-input-hint d-none">Debes completar este campo.</p>
+        </div>
+      </div>
+      <!-- Dirigido a -->
+
+      <!-- Por concepto -->
+      <div class="column col-4 col-md-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="concept">Por concepto</label>
+          <input class="form-input"
+                 type="text"
+                 id="concept"
+                 name="concept"
+                 value="FORMATOS IPERC - ARGENTUM"
+                 placeholder="Ingresar concepto de la proforma" />
+          <p id="concept-error-hint"
+             class="form-input-hint d-none">Debes completar este campo.</p>
+        </div>
+      </div>
+      <!-- Por concepto -->
+
+      <div class="column col-12 mt-2 pt-2">
+        <div class="divider text-center"
+             data-content="Formulario del producto"></div>
+      </div>
+
+      <!-- Descripcion -->
+      <div class="column col-4 col-md-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="description">Descripcion</label>
+          <input class="form-input"
+                 type="text"
+                 id="description"
+                 value="IPERC- ORDEN DE TRABAJO"
+                 placeholder="Ingresar descripcion" />
+          <p id="description-error-hint"
+             class="form-input-hint d-none">Debes completar este campo.</p>
+        </div>
+      </div>
+      <!-- Descripcion -->
+
+      <!-- Cantidad -->
+      <div class="column col-4 col-md-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="quantity">Cantidad</label>
+          <input class="form-input"
+                 type="text"
+                 id="quantity"
+                 value="2MILL."
+                 placeholder="Ingresar cantidad" />
+          <p id="quantity-error-hint"
+             class="form-input-hint d-none">Debes completar este campo.</p>
+        </div>
+      </div>
+      <!-- Cantidad -->
+
+      <!-- Precio -->
+      <div class="column col-4 col-md-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="price">Precio</label>
+          <input class="form-input text-right"
+                 type="number"
+                 id="price"
+                 min="0"
+                 value="733"
+                 max="50000"
+                 step="0.01"
+                 placeholder="Ingresar precio" />
+          <p id="price-error-hint"
+             class="form-input-hint d-none">Debes completar este campo.</p>
+          <p id="price-number-error-hint"
+             class="form-input-hint d-none">Debe ser un valor numerico</p>
+        </div>
+      </div>
+      <!-- Precio -->
+
+      <!-- Detalle -->
+      <div class="column col-12">
+        <div class="form-group">
+          <label class="form-label"
+                 for="detail">Detalle</label>
+          <textarea class="form-input"
+                    id="detail"
+                    placeholder="Ingresar detalle"
+                    rows="3">SERVICIO DE IMPRESION ORDEN DE TRABAJO y al reverso FORMATO IPERC CONTINUO, AMBOS en 1 SOLA HOJA EN TAMANO A5 A COLORES Y EMBLOCADOS EN 100</textarea>
+          <p id="detail-error-hint"
+             class="form-input-hint d-none">Debes completar este campo.</p>
+        </div>
+      </div>
+      <!-- Detalle -->
+
+
+
+      <!-- CTA Agregar producto -->
+      <div id="btnAddProductContainer"
+           class="column col-ml-auto col-3 col-md-12 my-2 py-2">
+        <button id="btnAddProduct"
+                class="btn btn-primary btn-lg btn-block">
+          Agregar producto <i class="icon icon-plus"></i>
+        </button>
+      </div>
+      <!-- CTA Agregar producto -->
+
+      <!-- CTA editar producto -->
+      <div id="btnEditionContainer"
+           class="column col-12 col-md-6 my-2 py-2 d-none">
+        <div class="columns">
+          <div class="column col-3 col-ml-auto col-md-12 text-center">
+            <button id="btnCancelEditionProduct"
+                    class="btn btn-lg btn-link ">
+              Cancelar
+            </button>
+          </div>
+          <div class="column col-3 col-md-6">
+            <button id="btnEditProduct"
+                    class="btn btn-lg btn-block">
+              Actualizar
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- CTA Agregar producto -->
+
+      <!-- Tabla de datos -->
+      <div class="column col-12 mt-2 pt-2">
+        <div class="divider text-center"
+             data-content="Tabla de productos"></div>
+      </div>
+      <div class="column col-12">
+        <table id="productTable"
+               class="table table-striped table-hover table-scroll">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Descripcion</th>
+              <th>Detalle</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>
+      <!-- Tabla de datos -->
+
+      <!-- Detalle de la tabla de datos -->
+      <div class="column col-12 mt-2 pt-2">
+        <div class="columns">
+          <div class="column col-12">
+            Cant. de Productos
+            <span id="productTotalQuantity"
+                  class="label label-secondary label-rounded">0</span>
+            <span class="mx-2 px-2">Total</span>
+            <span id="productTotalPrice"
+                  class="label label-secondary label-rounded">S/ 0.00</span>
+          </div>
+        </div>
+      </div>
+      <!-- Detalle de la tabla de datos -->
+
+      <div class="column col-12 mt-2 pt-2">
+        <div class="divider"></div>
+      </div>
+
+      <!-- CTA Generar proforma -->
+      <div class="column col-ml-auto col-3 col-md-12 my-2 py-2">
+        <button id="btnGenerateInvoice"
+                class="btn btn-primary btn-lg btn-block">
+          Generar Proforma <i class="icon icon-download"></i>
+        </button>
+      </div>
+
+      <!-- CTA Generar proforma -->
+      <div id="toastError"
+           class="toast toast-error">
+        <button class="btn btn-clear float-right"></button>
+        <p>Debes añadir por lo menos un producto para generar la proforma</p>
+      </div>
+    </div>
+  </div>
+  <!-- MAIN FORM -->
+  <script src="scripts/utils.js"></script>
+  <script src="scripts/form.js"></script>
+  <script src="scripts/table.js"></script>
+  <script src="scripts/index.js"></script>
+</body>
+
+</html>
