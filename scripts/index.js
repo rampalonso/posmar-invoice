@@ -36,7 +36,7 @@ function listeners() {
           total: ProductTable.getTotalPrince(),
         };
         window.localStorage.setItem("invoice", JSON.stringify(invoice));
-        window.location.href = '/invoice';
+        window.location.href = window.location.href + '/invoice';
       }
     });
 }

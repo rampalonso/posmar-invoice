@@ -48,7 +48,7 @@ function fileName(invoice) {
 function GetInvoiceData() {
   let invoiceData = window.localStorage.getItem("invoice");
   if (!invoiceData) {
-    window.location.href = "/";
+    window.location.href = window.location.origin + '/posmar-invoice';
     return;
   }
   invoiceData = JSON.parse(invoiceData);
